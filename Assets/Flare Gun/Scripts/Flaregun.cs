@@ -1,5 +1,9 @@
-﻿using UnityEngine;
-using System.Collections;
+﻿using System.Collections;
+using System.Collections.Generic;
+using UnityEngine;
+using UnityEngine.UI;
+using TMPro;
+
 
 public class Flaregun : MonoBehaviour {
 	
@@ -13,7 +17,10 @@ public class Flaregun : MonoBehaviour {
 	public int maxSpareRounds = 5;
 	public int spareRounds = 3;
 	public int currentRound = 0;
-	
+	public int ammo;
+	public bool isFiring;
+	public TextMeshProUGUI amDisplay;
+
 	// Update is called once per frame
 	void Update () 
 	{
@@ -32,7 +39,8 @@ public class Flaregun : MonoBehaviour {
 			Reload();
 			
 		}
-	
+		amDisplay.text = ammo.ToString();
+		
 	}
 	
 	void Shoot()
@@ -44,9 +52,14 @@ public class Flaregun : MonoBehaviour {
 		
 			GetComponent<Animation>().CrossFade("Shoot");
 			GetComponent<AudioSource>().PlayOneShot(flareShotSound);
+
 		
-			
-			Rigidbody bulletInstance;			
+			isFiring = true;
+			ammo--;
+			isFiring = false;
+		
+
+		Rigidbody bulletInstance;			
 			bulletInstance = Instantiate(flareBullet,barrelEnd.position,barrelEnd.rotation) as Rigidbody; //INSTANTIATING THE FLARE PROJECTILE
 			
 			
@@ -57,11 +70,13 @@ public class Flaregun : MonoBehaviour {
 	
 	void Reload()
 	{
-		if(spareRounds >= 1 && currentRound == 0){
+		if(spareRounds >= 10){
 			GetComponent<AudioSource>().PlayOneShot(reloadSound);			
 			spareRounds--;
 			currentRound+=5;
 			GetComponent<Animation>().CrossFade("Reload");
+			currentRound = 5;
+			ammo = 5;
 		}
 		
 	}
