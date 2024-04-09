@@ -17,7 +17,7 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Flare Gun/Scene/Level 2.unity
     guid: ee57c3c767dbe43609e5d9ed058841ab
-  - enabled: 0
+  - enabled: 1
     path: Assets/Flare Gun/Scene/Level 3.unity
     guid: e8e677cc85605438c8280aff86be6ad4
   m_configObjects:
