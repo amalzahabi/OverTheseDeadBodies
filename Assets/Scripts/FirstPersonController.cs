@@ -64,6 +64,9 @@ namespace StarterAssets
 		private float _jumpTimeoutDelta;
 		private float _fallTimeoutDelta;
 
+		// pausing
+		public static FirstPersonController instance;
+		public bool Paused;
 	
 #if ENABLE_INPUT_SYSTEM && STARTER_ASSETS_PACKAGES_CHECKED
 		private PlayerInput _playerInput;
@@ -88,6 +91,7 @@ namespace StarterAssets
 
 		private void Awake()
 		{
+			instance = this; 
 			// get a reference to our main camera
 			if (_mainCamera == null)
 			{
@@ -112,6 +116,11 @@ namespace StarterAssets
 
 		private void Update()
 		{
+			if(Paused)
+            {
+				return;
+            }
+
 			JumpAndGravity();
 			GroundedCheck();
 			Move();
@@ -119,6 +128,10 @@ namespace StarterAssets
 
 		private void LateUpdate()
 		{
+			if (Paused)
+			{
+				return;
+			}
 			CameraRotation();
 		}
 
