@@ -7,8 +7,8 @@ public class Goal2 : MonoBehaviour
 {
     Rigidbody _rigidbody;
     Transform target;
-    Vector2 moveDirection;
-    public float speed;
+    
+    
 
     private void Start()
     {
@@ -17,12 +17,7 @@ public class Goal2 : MonoBehaviour
 
     }
 
-    private void Update()
-    {
-
-
-
-    }
+    
 
     private void OnTriggerEnter(Collider other)
     {
